@@ -6,9 +6,11 @@ import com.tapsileiTechnologies.domain.Department;
 import com.tapsileiTechnologies.rm.DepartmentRowMapper;
 import com.tapsileiTechnologies.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DepartmentServiceImpl extends BaseDAO implements DepartmentService {
 
     @Autowired
@@ -41,9 +43,14 @@ public class DepartmentServiceImpl extends BaseDAO implements DepartmentService 
     }
 
     @Override
-    public Department findById(Integer deptIds) {
+    public Department findById(Integer deptId) {
 
-        return departmentDao.findById(deptIds);
+        return departmentDao.findById(deptId);
+    }
+
+    @Override
+    public List<Department> findDepartments() {
+        return departmentDao.findAll();
     }
 
     @Override
@@ -53,7 +60,7 @@ public class DepartmentServiceImpl extends BaseDAO implements DepartmentService 
 
     @Override
     public List<Department> findDepartment(Integer deptIds, String txt) {
-        String sql = "SELECT departmentId, departmentCode,departmentFaculty, departmentName FROM department WHERE deptIds=? AND (departmentCode LIKE '%" + txt + "%' OR departmentFaculty LIKE '%" + txt + "%' OR departmentName LIKE '%" + txt + "%')";
+        String sql = "SELECT departmentId,facultyid, departmentCode, departmentName FROM department WHERE deptIds=? AND (departmentCode LIKE '%" + txt + "%' OR departmentFaculty LIKE '%" + txt + "%' OR departmentName LIKE '%" + txt + "%')";
         return getJdbcTemplate().query(sql, new DepartmentRowMapper(), deptIds);
     }
 }

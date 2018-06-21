@@ -1,54 +1,54 @@
 package com.tapsileiTechnologies.domain;
 
 public class Department {
-    private int depertmentId;
-    private String depertmentCode;
-    private String facultyName;
-    private String depertmentName;
+    private int departmentId;
+    private int facultyId;
+    private String departmentCode;
+    private String departmentName;
 
     //Constructors
 
     public Department() {
     }
 
-    public Department(int depertmentId, String depertmentCode, String facultyName, String depertmentName) {
-        this.depertmentId = depertmentId;
-        this.depertmentCode = depertmentCode;
-        this.facultyName = facultyName;
-        this.depertmentName = depertmentName;
+    public Department(int departmentId, int facultyId, String departmentCode, String departmentName) {
+        this.departmentId = departmentId;
+        this.facultyId = facultyId;
+        this.departmentCode = departmentCode;
+        this.departmentName = departmentName;
     }
 
-    //Getters and Setters
+    //Getters And Setters
 
     public int getDepertmentId() {
-        return depertmentId;
+        return departmentId;
     }
 
-    public void setDepertmentId(int depertmentId) {
-        this.depertmentId = depertmentId;
+    public void setDepertmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public String getDepertmentCode() {
-        return depertmentCode;
+    public int getFacultyId() {
+        return facultyId;
     }
 
-    public void setDepertmentCode(String depertmentCode) {
-        this.depertmentCode = depertmentCode;
+    public void setFacultyId(int facultyId) {
+        this.facultyId = facultyId;
     }
 
-    public String getFacultyName() {
-        return facultyName;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setFacultyName(String facultyName) {
-        this.facultyName = facultyName;
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
     }
 
-    public String getDepertmentName() {
-        return depertmentName;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setDepertmentName(String depertmentName) {
-        this.depertmentName = depertmentName;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 }

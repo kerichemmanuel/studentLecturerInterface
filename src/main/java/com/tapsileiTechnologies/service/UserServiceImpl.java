@@ -35,18 +35,22 @@ public class UserServiceImpl extends BaseDAO implements UserService {
         try {
             User u = getNamedParameterJdbcTemplate().queryForObject(sql, m, new UserRowMapper());
             if (u.getLoginStatus().equals(UserService.LOGIN_STATUS_BLOCKED)) {
-                throw new UserBlockedException("Your accout has been blocked. Contact to admin.");
+                throw new UserBlockedException("Your account has been blocked. Contact to admin.");
             } else {
+                System.out.println("1. Administrator Accepted");
+
                 return u;
             }
         } catch (EmptyResultDataAccessException ex) {
+            System.out.println("1. just got you dude.....,No moving ahead please without right details at UserServiceImpl");
+
             return null;
         }
     }
 
     @Override
     public List<User> getUserList() {
-        return userDAO.findByProperty("role", UserService.ROLE_USER);
+        return userDAO.findByProperty("role", UserService.ROLE_ADMIN);
     }
 
     @Override

@@ -1,8 +1,12 @@
 package com.tapsileiTechnologies.domain;
 
 
+import javax.validation.constraints.NotNull;
+
 public class User {
+
     private Integer userId;
+    @NotNull(message = "Name should not be empty")
     private String name;
     private String phone;
     private String email;

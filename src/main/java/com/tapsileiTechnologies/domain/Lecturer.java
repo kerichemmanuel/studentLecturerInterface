@@ -1,19 +1,51 @@
 package com.tapsileiTechnologies.domain;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Lecturer {
+
     private Integer lecturerId;
+
+    @Pattern(regexp = "(\\d{5})", message = "Please Enter valid Staff Number")
     private String staffNo;
-    private String lecFName;
-    private String lecLName;
-    private String lecOName;
+
+    @Pattern(regexp = "([a-zA-Z]+)", message = "Please Enter valid Name")
+    private String firstName;
+
+    @Pattern(regexp = "([a-zA-Z]+)", message = "Please Enter valid Name")
+    private String lastName;
+
+    @Pattern(regexp = "([a-zA-Z]+)", message = "Please Enter valid Name")
+    private String otherName;
+
+    @NotEmpty(message = "Please select Your Gender")
     private String gender;
+
+    @NotEmpty(message = "Please select Your faculty")
     private String faculty;
+
+    @NotEmpty(message = "Please select Your department")
     private String department;
+
+    @NotEmpty(message = "Please select Your citation")
     private String citation;
+
+    @NotEmpty(message = "Please select Your Gender")
     private String specialization;
+
+    @NotNull(message = "Phone cannot be null. Enter phone number")
+    @Pattern(regexp = "(([+254]|[07])+\\d{8})", message = "Enter valid phone number")
     private String phone;
+
+    @Email(message = "Please Enter Valid Email")
     private String email;
+
     private Integer role;
+
+    @NotEmpty(message = "Please Enter your Password")
     private String password;
     private Integer loginStatus;
 
@@ -22,14 +54,15 @@ public class Lecturer {
     public Lecturer() {
     }
 
-    public Lecturer(Integer lecturerId, String staffNo, String lecFName, String lecLName, String lecOName,
-                    String gender, String faculty, String department, String citation, String specialization,
-                    String phone, String email, Integer role, String password, Integer loginStatus) {
+    public Lecturer(Integer lecturerId, String staffNo, String firstName, String lastName,
+                    String otherName, String gender, String faculty, String department, String citation,
+                    String specialization, String phone, String email, Integer role, String password,
+                    Integer loginStatus) {
         this.lecturerId = lecturerId;
         this.staffNo = staffNo;
-        this.lecFName = lecFName;
-        this.lecLName = lecLName;
-        this.lecOName = lecOName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.otherName = otherName;
         this.gender = gender;
         this.faculty = faculty;
         this.department = department;
@@ -43,6 +76,7 @@ public class Lecturer {
     }
 
     //Getters and Setters
+
 
     public Integer getLecturerId() {
         return lecturerId;
@@ -60,28 +94,28 @@ public class Lecturer {
         this.staffNo = staffNo;
     }
 
-    public String getLecFName() {
-        return lecFName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLecFName(String lecFName) {
-        this.lecFName = lecFName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLecLName() {
-        return lecLName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLecLName(String lecLName) {
-        this.lecLName = lecLName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getLecOName() {
-        return lecOName;
+    public String getOtherName() {
+        return otherName;
     }
 
-    public void setLecOName(String lecOName) {
-        this.lecOName = lecOName;
+    public void setOtherName(String otherName) {
+        this.otherName = otherName;
     }
 
     public String getGender() {

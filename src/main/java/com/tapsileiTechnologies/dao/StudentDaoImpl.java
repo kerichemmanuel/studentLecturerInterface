@@ -14,19 +14,20 @@ import java.util.Map;
 
 @Repository
 public class StudentDaoImpl extends BaseDAO implements StudentDao {
+
+
     @Override
     public void save(Student s) {
 
-        String sql = "INSERT INTO student(studentId, regNo, firstName, lastName,otherName,gender,faculty," +
+        String sql = "INSERT INTO student(regNo, firstName,lastName,otherName,gender,faculty," +
                 "department,email,phone,yearLevel,role,password,loginStatus) " +
-                "VALUES(:studentId, :regNo, :firstName, :lastName,:otherName,:gender,:faculty," +
+                "VALUES(:regNo, :firstName, :lastName,:otherName,:gender,:faculty," +
                 ":department,:email,:phone,:yearLevel,:role,:password,:loginStatus)";
         Map m = new HashMap();
-        m.put("studentId", s.getStudentId());
-        m.put("regNo",s.getStudFName());
-        m.put("firsName",s.getStudFName());
-        m.put("lastName", s.getStudLName());
-        m.put("otherName", s.getStudOName());
+        m.put("regNo",s.getRegNo());
+        m.put("firstName",s.getFirstName());
+        m.put("lastName", s.getLastName());
+        m.put("otherName", s.getOtherName());
         m.put("gender", s.getGender());
         m.put("faculty", s.getFaculty());
         m.put("department", s.getDepartment());
@@ -49,7 +50,7 @@ public class StudentDaoImpl extends BaseDAO implements StudentDao {
 
         String sql = "UPDATE student SET " +
                 "regNo=:regNo, " +
-                "firsName=:firsName, " +
+                "firstName=:firstName, " +
                 "lastName=:lastName," +
                 "otherName=:otherName," +
                 "gender=:gender," +
@@ -58,14 +59,15 @@ public class StudentDaoImpl extends BaseDAO implements StudentDao {
                 "email=:email," +
                 "phone=:phone," +
                 "yearLevel=:yearLevel," +
-                "loginStatus=:loginStatus," +
+               /* "loginStatus=:loginStatus," +*/
                 "password=:password " +
                 "WHERE studentId=:studentId";
         Map m = new HashMap();
-        m.put("regNo",s.getStudFName());
-        m.put("firsName",s.getStudFName());
-        m.put("lastName", s.getStudLName());
-        m.put("otherName", s.getStudOName());
+        m.put("studentId",s.getStudentId());
+        m.put("regNo",s.getRegNo());
+        m.put("firstName",s.getFirstName());
+        m.put("lastName", s.getLastName());
+        m.put("otherName", s.getOtherName());
         m.put("gender", s.getGender());
         m.put("faculty", s.getFaculty());
         m.put("department", s.getDepartment());
@@ -92,8 +94,8 @@ public class StudentDaoImpl extends BaseDAO implements StudentDao {
 
     @Override
     public Student findById(Integer studentId) {
-        String sql = "SELECT studentId, regNo, firsName, lastName, otherName,  " +
-                "gender,faculty, department, email, phone, yearLevel,loginStatus FROM student WHERE studentId=?";
+        String sql = "SELECT studentId, regNo, firstName, lastName, otherName,  " +
+                "gender,faculty, department, email, phone, yearLevel,role,loginStatus FROM student WHERE studentId=?";
         return getJdbcTemplate().queryForObject(sql, new StudentRowMapper(), studentId);
     }
 
@@ -101,14 +103,14 @@ public class StudentDaoImpl extends BaseDAO implements StudentDao {
     public List<Student> findAll() {
 
         String sql = "SELECT studentId, regNo, firsName, lastName, otherName, " +
-                "gender,faculty, department, email, phone, yearLevel,loginStatus FROM student";
+                "gender,faculty, department, email, phone, yearLevel,role,loginStatus FROM student";
         return getJdbcTemplate().query(sql, new StudentRowMapper());
     }
 
     @Override
     public List<Student> findByProperty(String propName, Object propValue) {
-        String sql = "SELECT  studentId, regNo, firsName, lastName, otherName," +
-                "gender,faculty, department, email, phone, yearLevel,loginStatus FROM student WHERE " + propName + "=?";
+        String sql = "SELECT  studentId, regNo, firstName, lastName, otherName," +
+                "gender,faculty, department, email, phone, yearLevel,role,loginStatus FROM student WHERE " + propName + "=?";
         return getJdbcTemplate().query(sql, new StudentRowMapper(), propValue);
     }
 }

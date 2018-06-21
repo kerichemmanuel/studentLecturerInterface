@@ -1,20 +1,49 @@
 package com.tapsileiTechnologies.domain;
 
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Student {
 
     private Integer studentId;
+
+    @Pattern(regexp = "([a-zA-Z]{1,2}\\d{2}[/]\\d{5}[/]\\d{2})", message = "Enter valid registration number")
     private String regNo;
-    private String studFName;
-    private String studLName;
-    private String studOName;
+
+    @Pattern(regexp = "([a-zA-Z]+)", message = "Please Enter valid First Name")
+    private String firstName;
+
+    @Pattern(regexp = "([a-zA-Z]+)", message = "Please Enter valid Last Name")
+    private String lastName;
+
+    @Pattern(regexp = "([a-zA-Z]+)", message = "Please Enter valid Sur-Name")
+    private String otherName;
+
+    @NotEmpty( message = "Please Enter valid gender")
     private String gender;
+
+    @NotEmpty( message = "Please Enter valid faculty")
     private String faculty;
+
+    @NotEmpty( message = "Please Enter valid department")
     private String department;
+
+    @NotEmpty( message = "Please Enter valid yearLevel")
     private String yearLevel;
+
+    @Email(message = "Please Enter Valid Email")
     private String email;
+
+    @NotNull(message = "Phone cannot be null. Enter phone number")
+    @Pattern(regexp = "(([+254]|[07])+\\d{8})", message = "Enter valid phone number")
     private String phone;
-    private Integer role;
+
+    @NotEmpty(message = "Please Enter your Password")
     private String password;
+    private Integer role;
     private Integer loginStatus;
 
     //Constructors
@@ -23,15 +52,15 @@ public class Student {
     public Student() {
     }
 
-    public Student(Integer studentId, String regNo, String studFName,
-                   String studLName, String studOName, String gender,
-                   String faculty, String department, String yearLevel, String email,
-                   String phone, Integer role, String password, Integer loginStatus) {
+    public Student(Integer studentId, String regNo, String firstName, String lastName,
+                   String otherName, String gender, String faculty, String department,
+                   String yearLevel, String email, String phone, Integer role, String password,
+                   Integer loginStatus) {
         this.studentId = studentId;
         this.regNo = regNo;
-        this.studFName = studFName;
-        this.studLName = studLName;
-        this.studOName = studOName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.otherName = otherName;
         this.gender = gender;
         this.faculty = faculty;
         this.department = department;
@@ -44,6 +73,7 @@ public class Student {
     }
 
     //Getters and Setters
+
 
     public Integer getStudentId() {
         return studentId;
@@ -61,28 +91,28 @@ public class Student {
         this.regNo = regNo;
     }
 
-    public String getStudFName() {
-        return studFName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setStudFName(String studFName) {
-        this.studFName = studFName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getStudLName() {
-        return studLName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setStudLName(String studLName) {
-        this.studLName = studLName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getStudOName() {
-        return studOName;
+    public String getOtherName() {
+        return otherName;
     }
 
-    public void setStudOName(String studOName) {
-        this.studOName = studOName;
+    public void setOtherName(String otherName) {
+        this.otherName = otherName;
     }
 
     public String getGender() {

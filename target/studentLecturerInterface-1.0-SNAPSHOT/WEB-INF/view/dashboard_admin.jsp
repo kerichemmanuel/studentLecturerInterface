@@ -1,4 +1,4 @@
- <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,6 @@
 </head>
 <s:url var="url_bg" value="/static/images/bg.jpg"/>
 <body background="${url_bg}">
-<table border="1" width="80%" align="center">
     <tr>
         <td height="80px">
             <%-- Header --%>
@@ -30,12 +29,9 @@
             TODO : Admin Options in this page
         </td>
     </tr>
-    <tr>
-        <td height="25px">
-            <%-- Footer --%>
-            <jsp:include page="include/footer.jsp"/>
-        </td>
-    </tr>
-</table>
+    <%-- Footer --%>
+    <div class="footer">
+        <jsp:include page="include/footer.jsp"/>
+    </div>
 </body>
 </html>

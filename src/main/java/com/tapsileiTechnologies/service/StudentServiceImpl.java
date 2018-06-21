@@ -2,18 +2,18 @@ package com.tapsileiTechnologies.service;
 
 import com.tapsileiTechnologies.dao.BaseDAO;
 import com.tapsileiTechnologies.dao.StudentDao;
-import com.tapsileiTechnologies.domain.Lecturer;
 import com.tapsileiTechnologies.domain.Student;
 import com.tapsileiTechnologies.exception.UserBlockedException;
-import com.tapsileiTechnologies.rm.LecturerRowMapper;
 import com.tapsileiTechnologies.rm.StudentRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class StudentServiceImpl extends BaseDAO implements StudentService {
 
     @Autowired
@@ -27,10 +27,15 @@ public class StudentServiceImpl extends BaseDAO implements StudentService {
     }
 
     @Override
+    public void update(Student s) {
+        studentDao.update(s);
+    }
+
+    @Override
     public Student login(String regNo, String password) throws UserBlockedException {
-        String sql ="SELECT studentId, regNo, firsName, lastName, otherName, " +
-                "gender,faculty, department, email, phone, yearLevel,loginStatus FROM student " +
-                "WHERE regNo=rg AND password=pw";
+        String sql ="SELECT studentId, regNo, firstName, lastName, otherName, " +
+                "gender,faculty, department, email, phone, yearLevel,role,loginStatus FROM student " +
+                "WHERE regNo=:rg AND password=:pw";
         Map m = new HashMap();
         m.put("rg", regNo);
         m.put("pw", password);
@@ -39,9 +44,11 @@ public class StudentServiceImpl extends BaseDAO implements StudentService {
             if (stude.getLoginStatus().equals(StudentService.LOGIN_STATUS_BLOCKED)) {
                 throw new UserBlockedException("Your account has been blocked. Contact Admin.");
             } else {
+                System.out.println("3. Student Accepted");
                 return stude;
             }
         } catch (EmptyResultDataAccessException ex) {
+            System.out.println("3. just got you more times dude.....,No moving ahead please,without right details at StudentServiceImpl");
             return null;
         }
 
@@ -64,12 +71,28 @@ public class StudentServiceImpl extends BaseDAO implements StudentService {
 
     @Override
     public Boolean isStudentRegNoExist(String regNo) {
-        String sql = "SELECT count(regNo) FROM lecturer WHERE regNo=?";
+        String sql = "SELECT count(regNo) FROM student WHERE regNo=?";
         Integer count = getJdbcTemplate().queryForObject(sql, new String[]{regNo}, Integer.class);
         if (count == 1) {
             return true;
         } else {
             return false;
         }
+    }
+
+    @Override
+    public Student findById(Integer studentId) {
+        return studentDao.findById(studentId);
+    }
+
+    @Override
+    public void delete(Student s) {
+        studentDao.delete(s);
+    }
+
+    @Override
+    public void delete(Integer studentId) {
+        studentDao.delete(studentId);
+
     }
 }

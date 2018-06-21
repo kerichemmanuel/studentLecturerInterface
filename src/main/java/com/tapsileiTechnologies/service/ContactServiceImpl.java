@@ -41,6 +41,7 @@ public class ContactServiceImpl extends BaseDAO implements ContactService {
 
     @Override
     public List<Contact> findUserContact(Integer userId) {
+
         return contactDAO.findByProperty("userId", userId);
     }
 
@@ -52,6 +53,7 @@ public class ContactServiceImpl extends BaseDAO implements ContactService {
 
     @Override
     public Contact findById(Integer cotactId) {
+
         return contactDAO.findById(cotactId);
     }
 

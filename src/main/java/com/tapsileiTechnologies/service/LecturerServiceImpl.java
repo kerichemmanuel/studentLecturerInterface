@@ -7,11 +7,13 @@ import com.tapsileiTechnologies.exception.UserBlockedException;
 import com.tapsileiTechnologies.rm.LecturerRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class LecturerServiceImpl extends BaseDAO implements LecturerService {
 
     @Autowired
@@ -26,20 +28,22 @@ public class LecturerServiceImpl extends BaseDAO implements LecturerService {
 
     @Override
     public Lecturer login(String staffNo, String password) throws UserBlockedException {
-        String sql ="SELECT lecturerId, staffNo, firsName, lastName, otherName, otherName, " +
-                "gender,faculty, department, email, phone, citation, specialization FROM lecturer " +
-                "WHERE staffNo=sn And password=pw";
+        String sql ="SELECT lecturerId,staffNo, firstName, lastName, otherName, " +
+                "gender,faculty, department, email, phone, citation, specialization,role,loginStatus FROM lecturer " +
+                "WHERE staffNo=:sn And password=:pw";
         Map m = new HashMap();
         m.put("sn", staffNo);
         m.put("pw", password);
         try {
             Lecturer lec = getNamedParameterJdbcTemplate().queryForObject(sql, m, new LecturerRowMapper());
             if (lec.getLoginStatus().equals(LecturerService.LOGIN_STATUS_BLOCKED)) {
-                throw new UserBlockedException("Your accout has been blocked. Contact to admin.");
+                throw new UserBlockedException("Your account has been blocked. Contact to admin.");
             } else {
+                System.out.println("2. Lecturer Accepted");
                 return lec;
             }
         } catch (EmptyResultDataAccessException ex) {
+            System.out.println("2. just got you again dude.....,No moving ahead please,without right details at LecturerServiceImpl");
             return null;
         }
     }

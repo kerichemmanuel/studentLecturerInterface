@@ -12,7 +12,6 @@ public interface UserService {
     public static final Integer LOGIN_STATUS_BLOCKED = 2;
 
     public static final Integer ROLE_ADMIN = 1;
-    public static final Integer ROLE_USER = 2;
 
 
     /**

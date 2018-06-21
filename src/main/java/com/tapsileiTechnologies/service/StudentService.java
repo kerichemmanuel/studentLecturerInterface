@@ -11,7 +11,6 @@ public interface StudentService {
     public static final Integer LOGIN_STATUS_ACTIVE = 1;
     public static final Integer LOGIN_STATUS_BLOCKED = 2;
 
-    public static final Integer ROLE_ADMIN = 1;
     public static final Integer ROLE_STUDENT = 4;
 
 
@@ -21,6 +20,14 @@ public interface StudentService {
      * @param student the new student detail as Student Object.
      */
     public void register(Student student);
+
+    public void update(Student s);
+
+    public Student findById(Integer studentId);
+
+    public void delete(Student s);
+
+    public void delete(Integer studentId);
 
     /**
      * The method handles login operation(authentication) using given credentials,
@@ -56,5 +63,4 @@ public interface StudentService {
      * @return
      */
     public Boolean isStudentRegNoExist(String regNo);
-
 }

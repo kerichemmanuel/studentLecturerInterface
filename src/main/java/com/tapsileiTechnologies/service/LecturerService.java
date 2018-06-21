@@ -11,7 +11,6 @@ public interface LecturerService {
     public static final Integer LOGIN_STATUS_ACTIVE = 1;
     public static final Integer LOGIN_STATUS_BLOCKED = 2;
 
-    public static final Integer ROLE_ADMIN = 1;
     public static final Integer ROLE_LECTURER = 3;
 
 

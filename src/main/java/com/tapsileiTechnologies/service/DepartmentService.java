@@ -4,6 +4,7 @@ import com.tapsileiTechnologies.domain.Department;
 
 import java.util.List;
 
+
 public interface DepartmentService {
 
     public void save(Department dept);
@@ -21,6 +22,9 @@ public interface DepartmentService {
 
     public Department findById(Integer deptIds);
 
+    public List<Department> findDepartments();
+
+
     /**
      * This method returns all User Contact (user who is logged in).
      *
@@ -37,5 +41,6 @@ public interface DepartmentService {
      * @param txt    criteria used to search - free text search criteria
      * @return
      */
+
     public List<Department> findDepartment(Integer deptIds, String txt);
 }

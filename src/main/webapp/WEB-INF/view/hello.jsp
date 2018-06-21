@@ -10,7 +10,7 @@
 <body>
 <h1>
     Hello World!
-    Welcome to EZEON TECHNOLOGIES <br/>
+    Welcome to Tapsilei TECHNOLOGIES <br/>
     Spring MVC is Ready !!!
 </h1>
 </body>

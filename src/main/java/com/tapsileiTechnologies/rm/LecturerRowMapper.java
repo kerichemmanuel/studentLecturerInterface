@@ -13,9 +13,9 @@ import java.sql.SQLException;
 
             l.setLecturerId(rs.getInt("lecturerId"));
             l.setStaffNo(rs.getString("staffNo"));
-            l.setLecFName(rs.getString("lecFName"));
-            l.setLecLName(rs.getString("lecLName"));
-            l.setLecOName(rs.getString("lecOName"));
+            l.setFirstName(rs.getString("firstName"));
+            l.setLastName(rs.getString("lastName"));
+            l.setOtherName(rs.getString("otherName"));
             l.setGender(rs.getString("gender"));
             l.setFaculty(rs.getString("faculty"));
             l.setDepartment(rs.getString("department"));

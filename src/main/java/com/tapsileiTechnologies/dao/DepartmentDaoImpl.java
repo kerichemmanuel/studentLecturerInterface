@@ -14,15 +14,16 @@ import java.util.Map;
 
 @Repository
 public class DepartmentDaoImpl extends BaseDAO implements DepartmentDao {
+
     @Override
     public void save(Department d) {
-        String sql = "INSERT INTO department(departmentId, departmentCode, facultyName, departmentName) " +
-                "VALUES(:departmentId, :departmentCode, :facultyName, :departmentName)";
+        System.out.println("I was called by departmentController");
+        String sql = "INSERT INTO department(facultyId, departmentCode, departmentName) " +
+                "VALUES(:facultyId, :departmentCode, :departmentName)";
         Map m = new HashMap();
-        m.put("departmentId", d.getDepertmentId());
-        m.put("departmentCode",d.getDepertmentCode());
-        m.put("facultyName",d.getDepertmentName());
-        m.put("departmentName", d.getDepertmentName());
+        m.put("facultyId",d.getFacultyId());
+        m.put("departmentCode",d.getDepartmentCode());
+        m.put("departmentName", d.getDepartmentName());
 
         SqlParameterSource ps = new MapSqlParameterSource(m);
         KeyHolder kh = new GeneratedKeyHolder();
@@ -33,11 +34,12 @@ public class DepartmentDaoImpl extends BaseDAO implements DepartmentDao {
     @Override
     public void update(Department d) {
 
-        String sql = "UPDATE courseunit SET departmentCode=:departmentCode, facultyName=:facultyName, departmentName=:departmentName WHERE unitId=:unitId";
+        String sql = "UPDATE department SET  facultyId=:facultyId,departmentCode=:departmentCode, departmentName=:departmentName WHERE departmentId=:departmentId";
         Map m = new HashMap();
-        m.put("departmentCode",d.getDepertmentCode());
-        m.put("facultyName",d.getDepertmentName());
-        m.put("departmentName", d.getDepertmentName());
+        m.put("departmentId",d.getDepertmentId());
+        m.put("facultyId",d.getFacultyId());
+        m.put("departmentCode",d.getDepartmentCode());
+        m.put("departmentName", d.getDepartmentName());
         getNamedParameterJdbcTemplate().update(sql, m);
     }
 
@@ -55,19 +57,19 @@ public class DepartmentDaoImpl extends BaseDAO implements DepartmentDao {
 
     @Override
     public Department findById(Integer departmentId) {
-        String sql = "SELECT departmentId, departmentCode, departmentName FROM department WHERE departmentId=?";
+        String sql = "SELECT departmentId,facultyId, departmentCode, departmentName FROM department WHERE departmentId=?";
         return getJdbcTemplate().queryForObject(sql, new DepartmentRowMapper(), departmentId);
     }
 
     @Override
     public List<Department> findAll() {
-        String sql = "SELECT departmentId, departmentCode, departmentName FROM department";
+        String sql = "SELECT departmentId,facultyId, departmentCode, departmentName FROM department";
         return getJdbcTemplate().query(sql, new DepartmentRowMapper());
     }
 
     @Override
     public List<Department> findByProperty(String propName, Object propValue) {
-        String sql = "SELECT departmentId, departmentCode, departmentName FROM department WHERE " + propName + "=?";
+        String sql = "SELECT departmentId,facultyId, departmentCode, departmentName FROM department WHERE " + propName + "=?";
         return getJdbcTemplate().query(sql, new DepartmentRowMapper(), propValue);
     }
 }

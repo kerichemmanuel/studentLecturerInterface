@@ -12,9 +12,9 @@ import java.sql.SQLException;
         public Department mapRow(ResultSet rs, int i) throws SQLException {
             Department d = new Department();
             d.setDepertmentId(rs.getInt("departmentId"));
-           d.setDepertmentCode(rs.getString("departmentCode"));
-            d.setFacultyName(rs.getString("facultyName"));
-            d.setDepertmentName(rs.getString("departmentName"));
+           d.setFacultyId(rs.getInt("facultyId"));
+            d.setDepartmentCode(rs.getString("departmentCode"));
+            d.setDepartmentName(rs.getString("departmentName"));
 
             return d;
         }
