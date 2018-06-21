@@ -1,1 +1,1 @@
-&COPY;[2009-2017] Copyrights by <a target="_blank" href="#">TAPSILEI TECHNOLOGY SOLUTIONS LTD</a>
+&COPY;[2017-2018] Copyrights by <a target="_blank" href="#">TAPSILEI TECHNOLOGY SOLUTIONS LTD</a>

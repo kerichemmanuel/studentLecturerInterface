@@ -38,6 +38,7 @@
     <p class="success">User Registered Successfully. Please login</p>
 </c:if>
 
+<%--
 
 <div class="container">
     <div class="row">
@@ -78,7 +79,8 @@
             </div>
         </div>
     </div>
-</div>
+--%>
+<%--</div>--%>
 <%-- Footer --%>
 <div class="footer">
     <jsp:include page="include/footer.jsp"/>

@@ -36,8 +36,13 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/index"})
     public String index(Model m) {
-        m.addAttribute("command", new LoginCommand());
         return "index"; //JSP - /WEB-INF/view/index.jsp
+    }
+
+    @RequestMapping(value = {"/login"})
+    public String login(Model m) {
+        m.addAttribute("command", new LoginCommand());
+        return "login"; //JSP - /WEB-INF/view/index.jsp
     }
 
      @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -64,12 +69,12 @@ public class UserController {
                 //add error message and go back to login-form
                 m.addAttribute("err", "Login Failed! Enter valid credentials.");
                 System.out.println("Nothing was entered");
-                return "index";//JSP - Login FORM
+                return "login";//JSP - Login FORM
             }
         } catch (UserBlockedException ex) {
             //add error message and go back to login-form
             m.addAttribute("err", ex.getMessage());
-            return "index";//JSP - Login FORM
+            return "login";//JSP - Login FORM
         }
     }
 
