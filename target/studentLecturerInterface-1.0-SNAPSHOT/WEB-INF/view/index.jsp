@@ -39,46 +39,12 @@
 </c:if>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3">
-            <div style="margin-top: 10px">
-                <hr>
-                <div class="panel panel-primary">
-                    <div class="panel-body">
 
-                        <s:url var="url_login" value="/login"/>
-                        <f:form action="${url_login}" modelAttribute="command">
-                            <div class="form-group">
-                                <h3>User Login</h3>
-                                <hr/>
+             TODO
 
-                                <input type="text" class="form-control" name="loginName"
-                                       placeholder="Enter Your User Name">
-                            </div>
-                            <div class="form-group">
 
-                                <input type="password" class="form-control" name="password"
-                                       placeholder="Enter Password">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="glyphicon-lock"></i>
-                                    &nbsp;
-                                    Login
-                                </button>
-                            </div>
-                            <br>
-                            <s:url var="url_reg_form" value="/student_registration_form"/>
-                            <p>If you don't have account <a href=${url_reg_form}
-                                                                    class="badge-primary">Register Here</a></p>
-                        </f:form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 <%-- Footer --%>
 <div class="footer">
     <jsp:include page="include/footer.jsp"/>

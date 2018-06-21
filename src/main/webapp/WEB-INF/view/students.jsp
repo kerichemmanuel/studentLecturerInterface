@@ -6,6 +6,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Student List - StudentLecturer Application </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <s:url var="url_css" value="/static/css/style.css"/>
     <link href="${url_css}" rel="stylesheet" type="text/css"/>
     <s:url var="url_jqlib" value="/static/js/jquery-3.2.1.min.js"/>
@@ -45,6 +52,8 @@
                 <c:if test="${param.act eq 'regStud'}">
                     <p class="success">Student Saved Successfully</p>
                 </c:if>
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                <br>
             <table border="1">
                 <tr>
                     <th>SR</th>
@@ -59,7 +68,9 @@
                     <th>STATUS</th>
                     <th>ACTION</th>
                 </tr>
+                <tbody id="myTable">
                 <c:forEach var="s" items="${studentList}" varStatus="st">
+
                     <tr>
                         <td>${st.count}</td>
                         <td>${s.regNo}</td>
@@ -70,6 +81,7 @@
                         <td>${s.email}</td>
                         <td>${s.phone}</td>
                         <td>${s.yearLevel}</td>
+
                         <td>
                             <select id="id_${s.studentId}" onchange="changeStatus(${s.studentId},$(this).val())">
                                 <option value="1">Active</option>
@@ -93,7 +105,19 @@
                                 return false"  href="${url_del}">Delete</a></td>
                     </tr>
                 </c:forEach>
+                </tbody>
             </table>
+
+                <script>
+                    $(document).ready(function(){
+                        $("#myInput").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
 
         </td>
     </tr>

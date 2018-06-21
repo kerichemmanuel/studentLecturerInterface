@@ -41,6 +41,8 @@
         <td height="350px" valign="top">
             <%-- Page Content Area--%>
             <h3>User List</h3>
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                <br>
             <table border="1">
                 <tr>
                     <th>SR</th>
@@ -52,6 +54,7 @@
                     <th>USERNAME</th>
                     <th>STATUS</th>
                 </tr>
+                <tbody id="myTable">
                 <c:forEach var="u" items="${userList}" varStatus="st">
                     <tr>
                         <td>${st.count}</td>
@@ -72,8 +75,21 @@
                                 <%-- ${u.loginStatus} --%>
                         </td>
                     </tr>
+
                 </c:forEach>
+                </tbody>
             </table>
+
+                <script>
+                    $(document).ready(function(){
+                        $("#myInput").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
         </td>
     </tr>
 

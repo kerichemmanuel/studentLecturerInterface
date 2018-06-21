@@ -51,6 +51,8 @@
                 <button onclick="if(!(confirm('Are You Sure You Want To Delete The Selected Records?')))
                                 return false">Delete Selected Records</button>
                 <br/><br/>
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                <br>
                 <table border="1" cellpadding="3" width="100%">
                     <tr>
                         <th>SELECT</th>
@@ -66,8 +68,9 @@
                             <td align="center" colspan="8" class="error">No Records Present</td>
                         </tr>
                     </c:if>
-
+                    <tbody id="myTable">
                     <c:forEach var="d" items="${departmentList}" varStatus="st">
+
                         <tr>
                             <td align="center"><input type="checkbox" name="did" value="${d.depertmentId}"/></td>
                             <td>${d.depertmentId}</td>
@@ -87,8 +90,22 @@
                                 <a onclick="if(!(confirm('Are You Sure You Want To Delete The Record?')))
                                 return false"  href="${url_del}">Delete</a></td>
                         </tr>
+
                     </c:forEach>
+                    </tbody>
                 </table>
+
+                <script>
+                    $(document).ready(function(){
+                        $("#myInput").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
+
             </form>
         </td>
     </tr>
